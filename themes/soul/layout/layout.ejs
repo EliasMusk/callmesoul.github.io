@@ -1,0 +1,180 @@
+<%- partial('_partial/head') %>
+<main class="main height-100 flex flex-v">
+  <div class="main-top flex flex1">
+    <nuxt-link  to="/home" class="mobile-nav-btn iconfont icon-fenlei"></nuxt-link>
+    <a to="/home" class="mobile-logo " > <img src="<%= theme.logo %>" /> </a>
+    <!--主页上左部分-->
+    <div class="height-100 main-left">
+      <div class="main-left-top">
+        <a class="logo">
+          <img src="<%= theme.logo %>" />
+          <div class="sub-title"><%= theme.subTitle %></div>
+        </a>
+        </aside>
+        <%- partial('_partial/nav') %>
+      </div>
+
+      <div class="social flex flex-align-center ">
+        <div class="flex1 text-center">
+          <div class="icon relative">
+            <a class="iconfont icon-wechat1193418easyiconnet"></a>
+            <div class="float">
+              <img alt="微信二维码" title="微信二维码" src="http://oyz3pjs26.bkt.clouddn.com/qrcode_for_gh_b4c00b84720c_258%20%281%29.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="flex1 text-center">
+          <div class="icon"><a title="加我QQ" alt="加我QQ" class="iconfont icon-qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=547437716&site=qq&menu=yes"></a></div>
+        </div>
+        <div class="flex1 text-center">
+          <div class="icon"><a title="关注我微博" alt="关注我微博" class="iconfont icon-weibo" target="_blank" href="https://weibo.com/tellmesoul/"></a></div>
+        </div>
+      </div>
+    </div>
+    <!--主页上右部分-->
+    <nuxt />
+    <!--<div class="flex1 height-100 main-right flex flex-v">
+      <div class="foter">
+        <a href="" target="_blank">&copy; @blog.title date</a>
+        &lt;!&ndash;<a target="_blank">Design：Oriharaki</a>&ndash;&gt;
+        <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+        <a>粤ICP备15053557号</a>
+      </div>
+    </div>-->
+  </div>
+  <div class="main-bottom">
+
+    <div class="music flex flex-pack-justify flex-align-center">
+      <div class="control">
+        <a @click="preSong"><span class="iconfont icon-shangyishou"></span></a>
+        <a @click="playControl"><span class="iconfont" :class="$store.state.playing?'icon-kaishi':'icon-kaishi1'"></span></a>
+        <a @click="nextSong"><span class="iconfont icon-xiayishou-copy"></span></a>
+      </div>
+      <div class="msg">
+        <span class="time">{{currentTimeString}}</span>
+        <div class="line" ref="progress-line-warp">
+          <div class="song-msg">{{$store.state.musics && $store.state.musics[$store.state.musicPlayIndex] ? $store.state.musics[$store.state.musicPlayIndex].name + '-' + $store.state.musics[$store.state.musicPlayIndex].singer:''}}</div>
+          <div class="current-line" ref="progress-line">
+            <a tag="a" class="target" v-on:mousedown.prevent="mousedown"></a>
+          </div>
+        </div>
+        <span class="all-time">{{durationString}}</span>
+      </div>
+      <div class="right-control">
+        <a class="order-btn flex flex-align-center" @click="toogleShowMusicList">
+          <span class="iconfont icon-ttpodicon"></span>
+          <span class="number flex1">{{$store.state.musics.length}}</span>
+        </a>
+      </div>
+      <audio class="mian-audio" ref="main-audio" controls="controls">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+  <div class="music-list" :class="{'active':isShowMusicList}">
+    <vuescroll>
+      <a class="music-item flex flex-align-center" :class="{'active':index==$store.state.musicPlayIndex}" v-for="(music,index) in $store.state.musics" v-bind:key="index" @click="playIndex(index)">
+        <span class="iconfont" :class="index==$store.state.musicPlayIndex?'icon-kaishi':'icon-kaishi1'"></span>
+        <span class="title flex1">{{music.name}}-{{music.singer}}</span>
+      </a>
+    </vuescroll>
+  </div>
+</main><main class="main height-100 flex flex-v">
+  <div class="main-top flex flex1">
+    <nuxt-link  to="/home" class="mobile-nav-btn iconfont icon-fenlei"></nuxt-link>
+    <nuxt-link to="/home" class="mobile-logo iconfont icon-logo" ></nuxt-link>
+    <!--主页上左部分-->
+    <div class="height-100 main-left">
+      <div class="main-left-top">
+        <aside class="logo"><nuxt-link to="/home" class="iconfont icon-logo"></nuxt-link></aside>
+        <nav class="nav">
+          <nuxt-link title="首页" alt="首页" to="/home">
+            <div class="icon"><i class="iconfont icon-home"></i></div>
+            <div class="name">
+              <div class="cnname">首页</div>
+              <div class="enname">Home</div>
+            </div>
+          </nuxt-link>
+          <nuxt-link :title="menu.name"  :alt="menu.name" :to="'/tag/'+menu.slug" v-for="(menu,index) in menus" :key="index">
+            <div class="icon"><i class="iconfont" :class="'icon-'+menu.slug"></i></div>
+            <div class="name">
+              <div class="cnname">{{menu.name}}</div>
+              <div class="enname">{{menu.description}}</div>
+            </div>
+          </nuxt-link>
+          <!--<a href="/link/">
+            <div class="icon"><i class="iconfont icon-link"></i></div>
+            <div class="name">
+              <div class="cnname">友情链接</div>
+              <div class="enname">Friends Web Link</div>
+            </div>
+          </a>-->
+        </nav>
+      </div>
+
+      <div class="social flex flex-align-center ">
+        <div class="flex1 text-center">
+          <div class="icon relative">
+            <a class="iconfont icon-wechat1193418easyiconnet"></a>
+            <div class="float">
+              <img alt="微信二维码" title="微信二维码" src="http://oyz3pjs26.bkt.clouddn.com/qrcode_for_gh_b4c00b84720c_258%20%281%29.jpg">
+            </div>
+          </div>
+        </div>
+        <div class="flex1 text-center">
+          <div class="icon"><a title="加我QQ" alt="加我QQ" class="iconfont icon-qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=547437716&site=qq&menu=yes"></a></div>
+        </div>
+        <div class="flex1 text-center">
+          <div class="icon"><a title="关注我微博" alt="关注我微博" class="iconfont icon-weibo" target="_blank" href="https://weibo.com/tellmesoul/"></a></div>
+        </div>
+      </div>
+    </div>
+    <!--主页上右部分-->
+    <nuxt />
+    <!--<div class="flex1 height-100 main-right flex flex-v">
+      <div class="foter">
+        <a href="" target="_blank">&copy; @blog.title date</a>
+        &lt;!&ndash;<a target="_blank">Design：Oriharaki</a>&ndash;&gt;
+        <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+        <a>粤ICP备15053557号</a>
+      </div>
+    </div>-->
+  </div>
+  <div class="main-bottom">
+
+    <div class="music flex flex-pack-justify flex-align-center">
+      <div class="control">
+        <a @click="preSong"><span class="iconfont icon-shangyishou"></span></a>
+        <a @click="playControl"><span class="iconfont" :class="$store.state.playing?'icon-kaishi':'icon-kaishi1'"></span></a>
+        <a @click="nextSong"><span class="iconfont icon-xiayishou-copy"></span></a>
+      </div>
+      <div class="msg">
+        <span class="time">{{currentTimeString}}</span>
+        <div class="line" ref="progress-line-warp">
+          <div class="song-msg">{{$store.state.musics && $store.state.musics[$store.state.musicPlayIndex] ? $store.state.musics[$store.state.musicPlayIndex].name + '-' + $store.state.musics[$store.state.musicPlayIndex].singer:''}}</div>
+          <div class="current-line" ref="progress-line">
+            <a tag="a" class="target" v-on:mousedown.prevent="mousedown"></a>
+          </div>
+        </div>
+        <span class="all-time">{{durationString}}</span>
+      </div>
+      <div class="right-control">
+        <a class="order-btn flex flex-align-center" @click="toogleShowMusicList">
+          <span class="iconfont icon-ttpodicon"></span>
+          <span class="number flex1">{{$store.state.musics.length}}</span>
+        </a>
+      </div>
+      <audio class="mian-audio" ref="main-audio" controls="controls">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </div>
+  <div class="music-list" :class="{'active':isShowMusicList}">
+    <vuescroll>
+      <a class="music-item flex flex-align-center" :class="{'active':index==$store.state.musicPlayIndex}" v-for="(music,index) in $store.state.musics" v-bind:key="index" @click="playIndex(index)">
+        <span class="iconfont" :class="index==$store.state.musicPlayIndex?'icon-kaishi':'icon-kaishi1'"></span>
+        <span class="title flex1">{{music.name}}-{{music.singer}}</span>
+      </a>
+    </vuescroll>
+  </div>
+</main>
