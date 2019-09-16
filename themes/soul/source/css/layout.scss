@@ -81,9 +81,8 @@
         left: 0;
         width: 100%;
         border-top: 1px solid rgba(17, 13, 10, 0.63);
-        height: 50px;
         .icon{
-          a{
+          i{
             color: #9e9d99;
             font-size: 20px;
             line-height: 50px;
@@ -91,44 +90,10 @@
             cursor: pointer;
           }
         }
-        .flex-1{
+        .flex1{
           position: relative;
-          height: 4px;
-          line-height: 4px;
-          &:nth-child(2) {
-            &:before{
-              content: "";
-              display: block;
-              position: absolute;
-              left: 0;
-              bottom: 0;
-              height: 92%;
-              width: 1px;
-              background: rgba(17, 13, 10, 0.63);
-            }
-            &:after{
-              content: "";
-              display: block;
-              position: absolute;
-              right: 0;
-              bottom: 0;
-              height: 92%;
-              width: 1px;
-              background: rgba(17, 13, 10, 0.63);
-            }
-            .icon{
-              a{
-                font-size: 15px;
-              }
-            }
-          }
-          &:nth-child(3) {
-            .icon{
-              a{
-                font-size: 18px;
-              }
-            }
-          }
+          height: 50px;
+          line-height: 50px;
           &:hover{
             background: #504B47;
             .icon {
@@ -138,6 +103,7 @@
               }
             }
           }
+
         }
         .title {
           a{
