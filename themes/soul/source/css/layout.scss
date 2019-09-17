@@ -73,12 +73,24 @@
           }
         }
       }
-
+      .website-msg{
+        font-size: 12px;
+        color: #6f6666;
+        text-align: center;
+        line-height: 25px;
+        a{
+          color: #999999;
+          cursor: pointer;
+        }
+        .beian{
+          a{
+            color: #6f6666;
+          }
+        }
+      }
       .social {
+        margin-top: 10px;
         border-top: 1px solid #332e2b;
-        position: absolute;
-        bottom: 0;
-        left: 0;
         width: 100%;
         border-top: 1px solid rgba(17, 13, 10, 0.63);
         .icon{
@@ -190,9 +202,9 @@
           position: relative;
           display: inline-block;
           width: 455px;
-          height: 6px;
+          /* height: 6px; */
           background: #7b6657;
-          border: 1px solid #000000;
+          border: 1px solid #c0acac;
           border-radius: 5px;
           margin: 0 15px;
           cursor: pointer;

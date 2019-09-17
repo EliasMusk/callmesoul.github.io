@@ -4,8 +4,8 @@
     <nuxt-link  to="/home" class="mobile-nav-btn iconfont icon-fenlei"></nuxt-link>
     <a to="/home" class="mobile-logo " > <img src="<%= theme.logo %>" /> </a>
     <!--主页上左部分-->
-    <div class="height-100 main-left">
-      <div class="main-left-top">
+    <div class="height-100 main-left  flex flex-v">
+      <div class="main-left-top flex1">
         <a class="logo">
           <img src="<%= theme.logo %>" />
           <div class="sub-title"><%= theme.subTitle %></div>
@@ -13,6 +13,12 @@
         </aside>
         <%- partial('_partial/nav') %>
       </div>
+
+      <view class="website-msg">
+        <div class="beian"><a target="_blank" href="http://www.miitbeian.gov.cn/"><%= theme.beian %></a></div>
+        <div class="theme-drsc">PowerBy:<a href="https://hexo.io" target="_blank">Hexo</a> ThemeBy:<a href="" target="_blank">Soul</a></div>
+        <div class="copyright">Copyright &#169 <%= theme.copyright %> </div>
+      </view>
 
       <div class="social flex flex-align-center ">
         <% if (theme.social) { %>
@@ -30,50 +36,82 @@
     </div>
     <!--主页上右部分-->
     <nuxt />
-    <!--<div class="flex1 height-100 main-right flex flex-v">
-      <div class="foter">
-        <a href="" target="_blank">&copy; @blog.title date</a>
-        &lt;!&ndash;<a target="_blank">Design：Oriharaki</a>&ndash;&gt;
-        <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
-        <a>粤ICP备15053557号</a>
-      </div>
-    </div>-->
   </div>
   <div class="main-bottom">
-
     <div class="music flex flex-pack-justify flex-align-center">
       <div class="control">
         <a @click="preSong"><span class="iconfont icon-shangyishou"></span></a>
-        <a @click="playControl"><span class="iconfont" :class="$store.state.playing?'icon-kaishi':'icon-kaishi1'"></span></a>
+        <a onclick="playControl()"><span class="iconfont play-icon icon-kaishi1"></span></a>
         <a @click="nextSong"><span class="iconfont icon-xiayishou-copy"></span></a>
       </div>
       <div class="msg">
-        <span class="time">{{currentTimeString}}</span>
+        <span class="time"></span>
         <div class="line" ref="progress-line-warp">
-          <div class="song-msg">{{$store.state.musics && $store.state.musics[$store.state.musicPlayIndex] ? $store.state.musics[$store.state.musicPlayIndex].name + '-' + $store.state.musics[$store.state.musicPlayIndex].singer:''}}</div>
-          <div class="current-line" ref="progress-line">
+          <div class="song-msg"><%= theme.musics[0].singer %> - <%= theme.musics[0].name %></div>
+          <!--<div class="current-line" ref="progress-line">
             <a tag="a" class="target" v-on:mousedown.prevent="mousedown"></a>
-          </div>
+          </div>-->
         </div>
-        <span class="all-time">{{durationString}}</span>
+        <span class="all-time"></span>
       </div>
       <div class="right-control">
-        <a class="order-btn flex flex-align-center" @click="toogleShowMusicList">
+        <a class="order-btn flex flex-align-center" onclick="toogleShowMusicList()">
           <span class="iconfont icon-ttpodicon"></span>
-          <span class="number flex1">{{$store.state.musics.length}}</span>
+          <span class="number flex1"><%= theme.musics.length %></span>
         </a>
       </div>
-      <audio class="mian-audio" ref="main-audio" controls="controls">
+      <audio id="audio" class="mian-audio" src="<%= theme.musics[0].url %>">
         Your browser does not support the audio element.
       </audio>
     </div>
   </div>
-  <div class="music-list" :class="{'active':isShowMusicList}">
-    <vuescroll>
-      <a class="music-item flex flex-align-center" :class="{'active':index==$store.state.musicPlayIndex}" v-for="(music,index) in $store.state.musics" v-bind:key="index" @click="playIndex(index)">
-        <span class="iconfont" :class="index==$store.state.musicPlayIndex?'icon-kaishi':'icon-kaishi1'"></span>
-        <span class="title flex1">{{music.name}}-{{music.singer}}</span>
-      </a>
-    </vuescroll>
+  <div class="music-list">
+    <div id="musiclist">
+      <% theme.musics.forEach(function(music,index) { %>
+        <a class="music-item flex flex-align-center" onclick="playIndex(<%= index %>)">
+          <span class="iconfont" class="icon-kaishi"></span>
+          <span class="title flex1"><%= music.name %> - <%= music.singer %></span>
+        </a>
+      <% }); %>
+    </div>
   </div>
 </div>
+
+<script>
+  var audio = document.getElementById("audio");
+  var playbtn = document.getElementsByClassName("play-icon")[0];
+  var playing = false;
+  audio.loop = false;
+  audio.addEventListener('ended', function () {
+    playbtn.classList.remove("icon-kaishi")
+    playbtn.classList.add("icon-kaishi1")
+    playing = false
+  }, false);
+  audio.addEventListener('play', function () {
+    playbtn.classList.remove("icon-kaishi1")
+    playbtn.classList.add("icon-kaishi")
+    playing= true
+  }, false);
+  audio.addEventListener('pause', function () {
+    playbtn.classList.remove("icon-kaishi")
+    playbtn.classList.add("icon-kaishi1")
+    playing = false
+  }, false);
+  function toogleShowMusicList() {
+    var musiclist = document.getElementsByClassName("music-list")[0];
+    if(musiclist.className.indexOf("active") === -1){
+      musiclist.classList.add("active")
+    }else{
+      musiclist.classList.remove("active");
+    }
+  }
+
+  function playControl() {
+    debugger
+    if(playing){
+      audio.pause()
+    }else{
+      audio.play()
+    }
+  }
+</script>
