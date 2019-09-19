@@ -1,6 +1,6 @@
 .archive {
-  padding: 80px 160px;
-  background-color: white;
+  padding: 80px 160px !important;
+  background: rgba(80, 73, 70, 0.6);
   @media screen and (max-width: 600px){
     padding: 20px;
   }
@@ -11,6 +11,7 @@
     font-size: 28px;
     line-height: 40px;
     font-weight: 600;
+    color: #ffffff;
   }
   > .menu {
     margin-bottom: 70px;
@@ -22,6 +23,7 @@
       justify-content: space-between;
       line-height: 24px;
       > a {
+        color: #ffffff;
         &:hover {
           opacity: 1;
           color: #f0534e;

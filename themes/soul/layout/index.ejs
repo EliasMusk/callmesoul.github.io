@@ -1,4 +1,76 @@
-<% page.posts.each(function(post){ %>
-  <%- partial('_partial/' + (theme.card_style.home || 'project-card') , { post: post }) %>
-<% }) %>
-<%- partial('_partial/pagination') %>
+
+<!--<% page.posts.each(function(post){ %>-->
+<!--  <%- partial('_partial/' + (theme.card_style.home || 'project-card') , { post: post }) %>-->
+<!--<% }) %>-->
+<!--<%- partial('_partial/pagination') %>-->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.min.js"></script>
+<div class="main-right flex1 flex flex-v">
+  <div class="box flex1">
+    <!--<div class="box-top">-->
+    <!--<span>首页</span>-->
+    <!--</div>-->
+    <div class="box-content">
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <% page.posts.each(function(post) { %>
+            <a title="<%= post.title %>" alt="<%= post.title %>" href="<%- url_for(post.path) %>"
+               class="post-item swiper-slide flex flex-v">
+              <div class="image">
+                <% if (post.photos[0]) { %>
+                  <img title="<%= post.title %>" alt="<%= post.title %>" src="<%= post.photos[0] %>"></img>
+                <% } else { %>
+                  <img title="<%= post.title %>" alt="<%= post.title %>"
+                       src="/images/default.jpg"></img>
+                <% } %>
+              </div>
+              <div class="content-warp flex1 flex flex-v">
+                <div class="title">&lt; <%= post.title %> &gt;</div>
+                <div class="content flex1">
+                  <%- partial('_partial/excerpt', { post: post }) %>
+                </div>
+                <div class="post-tags">
+                  <% post.tags.forEach(function(tag) { %>
+                    <span href="<%= tag.link %>" class="">
+                      # <%= tag.name %>
+                    </span>
+                  <% }); %>
+                </div>
+                <div class="other">
+                  <!--<a><i class="iconfont icon-iconfontordinaryliulan"></i>52</a>-->
+                  <!--<a><i class="iconfont icon-icon27"></i>52</a>-->
+                  <span><i class="iconfont icon-shijian"></i><%= date(post.date, 'MMM D, YYYY') %></span>
+                </div>
+              </div>
+            </a>
+          <% }); %>
+
+
+        </div>
+        <div class="swiper-scrollbar"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  var mySwiper = new Swiper('.swiper-container', {
+    direction: 'horizontal', // 垂直切换选项
+    mousewheel: true,
+    slidesPerView: 4,
+    spaceBetween: 30,
+    scrollbar: {
+      el: '.swiper-scrollbar'
+    },
+    on: {
+      reachEnd: function () {
+
+      },
+    },
+
+    // 如果需要滚动条
+    scrollbar: {
+      el: '.swiper-scrollbar',
+    },
+  })
+</script>
