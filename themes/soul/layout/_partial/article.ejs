@@ -12,14 +12,8 @@
                     <%- post.content %>
                 </article>
             </div>
-            <% if (typeof commentSetting !== 'undefined' && commentSetting.showComment) { %>
-                <% if (commentSetting.commentPlatform === 'gitalk') { %>
-                    <%- include('./includes/gitalk') %>
-                <% } %>
-
-                <% if (commentSetting.commentPlatform === 'disqus') { %>
-                    <%- include('./includes/disqus') %>
-                <% } %>
+            <% if ( theme.gitalk ) { %>
+                <%- partial('./gitalk', { post: post }) %>
             <% } %>
         </div>
     </div>

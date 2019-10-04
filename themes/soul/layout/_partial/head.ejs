@@ -26,4 +26,18 @@
     <link rel="icon" href="<%- theme.favicon %>">
   <% } %>
   <%- css('css/index') %>
+
+
+  <!-- 百度站長統計-->
+  <% if (theme.statistics && theme.statistics.baidu && theme.statistics.baidu !== ''){ %>
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?<%- theme.statistics.baidu %>";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <% } %>
 </head>

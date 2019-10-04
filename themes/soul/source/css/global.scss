@@ -186,6 +186,7 @@ ul,li{
     background: rgba(112,100,93,0.6);
     transition: background-color 1s;
     -webkit-transition: background-color 1s;
+    min-height: 0;
 
     .title{
       font-size: 14px;
