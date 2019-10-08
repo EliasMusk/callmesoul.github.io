@@ -39,9 +39,9 @@
   <div class="main-bottom">
     <div class="music flex flex-pack-justify flex-align-center">
       <div class="control">
-        <a @click="preSong"><span class="iconfont icon-shangyishou"></span></a>
+        <a onclick="preSong()"><span class="iconfont icon-shangyishou"></span></a>
         <a onclick="playControl()"><span class="iconfont play-icon icon-kaishi1"></span></a>
-        <a @click="nextSong"><span class="iconfont icon-xiayishou-copy"></span></a>
+        <a onclick="nextSong()"><span class="iconfont icon-xiayishou-copy"></span></a>
       </div>
       <div class="msg">
         <span class="time"></span>
@@ -67,7 +67,7 @@
   <div class="music-list">
     <div id="musiclist">
       <% theme.musics.forEach(function(music,index) { %>
-        <a class="music-item flex flex-align-center" onclick="playIndex(<%= index %>)">
+        <a class="music-item flex flex-align-center" data-name="<%= music.singer %> - <%= music.name %>" data-url="<%= music.url %>" onclick="changePlayIndex(<%- index %>)" >
           <span class="iconfont" class="icon-kaishi"></span>
           <span class="title flex1"><%= music.name %> - <%= music.singer %></span>
         </a>
@@ -77,7 +77,16 @@
 </div>
 
 <script>
+  var playIndex = localStorage.getItem('playIndex') ? parseInt(localStorage.getItem('playIndex')) : 0
+  let musics = $('.music-item')
+  debugger
+  musics.eq(playIndex).addClass('active')
   var audio = document.getElementById("audio");
+
+  $('.song-msg').html(musics[playIndex].dataset.name)
+  audio.src = musics[playIndex].dataset.url
+
+
   var playbtn = document.getElementsByClassName("play-icon")[0];
   var playing = false;
   audio.loop = false;
@@ -111,5 +120,39 @@
     }else{
       audio.play()
     }
+  }
+
+  function changePlayIndex(index) {
+    if(playIndex !== index){
+      localStorage.setItem('playIndex',index)
+      playIndex = index
+      musics.removeClass('active')
+      musics.eq(playIndex).addClass('active')
+      $('.song-msg').html(musics[playIndex].dataset.name)
+      audio.src = musics[playIndex].dataset.url
+      audio.play()
+    }else{
+      playControl()
+    }
+  }
+
+  function preSong() {
+    var index
+    if(playIndex === 0){
+      index = musics.length - 1
+    }else{
+      index = playIndex - 1
+    }
+    changePlayIndex(index)
+  }
+
+  function nextSong() {
+    var index
+    if(playIndex === musics.length - 1){
+      index = 0
+    }else{
+      index = playIndex + 1
+    }
+    changePlayIndex(index)
   }
 </script>
