@@ -49,18 +49,43 @@
     </div>
 </div>
 <script>
+
+    function getSwiperPrams() {
+        var windowsWidth = $(document).width()
+        var slidesPerView
+        var direction;
+        if(windowsWidth > 1500){
+            direction = 'horizontal'
+            slidesPerView = 4
+        }else if(windowsWidth > 1100){
+            direction = 'horizontal'
+            slidesPerView = 3
+        }else if(windowsWidth > 1000){
+            direction = 'horizontal'
+            slidesPerView = 2
+        }else{
+            slidesPerView = 1
+            direction = 'vertical'
+        }
+        return {
+            direction: direction,
+            slidesPerView: slidesPerView
+        }
+    }
+    var params = getSwiperPrams()
+
   var mySwiper = new Swiper('.swiper-container', {
-    direction: 'horizontal', // 垂直切换选项
+    direction: params.direction, // 垂直切换选项
     mousewheel: true,
-    slidesPerView: 4,
+    slidesPerView: params.slidesPerView,
     spaceBetween: 30,
     scrollbar: {
       el: '.swiper-scrollbar'
     },
     on: {
-      reachEnd: function () {
+        resize: function(){
 
-      },
+        },
     },
 
     // 如果需要滚动条

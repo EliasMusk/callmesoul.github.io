@@ -82,3 +82,7 @@ deploy:
     repo: https://gitee.com/callmesoul/callmesoul.git
   - type: git
     repo: https://github.com/callmesoul/callmesoul.github.io.git
+
+# 自动生成sitemap
+sitemap:
+  path: sitemap.xml
