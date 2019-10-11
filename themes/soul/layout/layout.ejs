@@ -162,12 +162,12 @@
     var mainLeft = $('.main-left')
     if(mainLeft.hasClass('active')){
       mainLeft.removeClass('active')
-      $('.menu').removeClass('icon-menu')
-      $('.menu').addClass('icon-close')
-    }else{
-      mainLeft.addClass('active')
       $('.menu').removeClass('icon-close')
       $('.menu').addClass('icon-menu')
+    }else{
+      mainLeft.addClass('active')
+      $('.menu').removeClass('icon-menu')
+      $('.menu').addClass('icon-close')
     }
   }
 </script>
