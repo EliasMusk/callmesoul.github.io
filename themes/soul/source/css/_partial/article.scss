@@ -134,11 +134,13 @@ table{
       padding: 0;
       margin-bottom: 15px;
       color: #333;
+      background: transparent !important;
+      line-height: 2em;
+      font-family: Rubik,Lato,lucida grande,lucida sans unicode,Tahoma,Sans-Serif;
       .gutter {
         text-align: right;
         display: none;
         pre {
-          background-color: #f0f0f0;
           padding: 0 10px;
         }
       }
@@ -202,7 +204,3 @@ table{
   }
 
 
-.hljs{
-  line-height: 2em;
-  font-family: Rubik,Lato,lucida grande,lucida sans unicode,Tahoma,Sans-Serif;
-}
