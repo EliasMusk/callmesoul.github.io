@@ -1,0 +1,100 @@
+.project-card-list{
+  column-count: 4;
+  column-gap: 0.3rem;
+
+
+  &::after{ // 用于最后一行最后的位置显示空白
+    content: '';
+    flex-grow: 99999;// 放到最大
+  }
+
+  overflow: hidden;
+
+  .project-card {
+    column-span: none;
+    -webkit-column-break-after: avoid;
+    -webkit-column-break-before: avoid;
+    -webkit-column-break-inside: avoid;
+
+    display: block;
+    flex-grow: 1; // 根据比例计算每个图片多长等分剩余空间（好难解释，下面用图解释）
+    margin: 5px;
+    position: relative;
+    overflow: hidden; // 把多余的部分隐藏
+
+    background: #ffffff;
+    border-radius: 0.1rem;
+    margin-bottom: 0.3rem;
+    > .imgWrap {
+      background-color: #f8f8f8;
+      > img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+    }
+    > .ctnWrap {
+      padding: 0.3rem;
+      > .title {
+        line-height: 0.4rem;
+        &:hover {
+          opacity: 1;
+          color: #f0534e;
+        }
+      }
+      > .desc {
+        font-size: 16px;
+        line-height: 30px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+      }
+      > .sub {
+        font-size: 16px;
+        line-height: 30px;
+        opacity: .5;
+      }
+    }
+    &.project-card-continuous {
+      flex-direction: row-reverse;
+      margin: 0;
+      position: relative;
+      > .imgWrap {
+        margin-right: 0;
+        margin-left: 40px;
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        left: 100px;
+        right: 100px;
+        bottom: 0;
+        height: 1px;
+        background-color: #e5e5e5;
+      }
+      @media screen and (max-width: 600px) {
+        flex-direction: column;
+        padding: 20px;
+        > .imgWrap {
+          margin-left: 0;
+          margin-bottom: 20px;
+        }
+        &::after {
+          left: 20px;
+          right: 20px;
+        }
+      }
+    }
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      padding: 20px;
+      margin: 10px 0;
+      > .imgWrap {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100%;
+      }
+    }
+  }
+}
+

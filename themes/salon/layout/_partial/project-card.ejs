@@ -1,0 +1,14 @@
+<a class="project-card">
+  <div class="imgWrap">
+  <% if (post.photos[0]) { %>
+      <img data-src="<%= post.photos[0] %>" class="lazyload" alt="" />
+  <% } else { %>
+      <img data-src="https://github.com/callmesoul/chinese-colors/raw/master/demo/m.png" class="lazyload" alt="" />
+  <% } %>
+  </div>
+  <div class="ctnWrap">
+    <div href="<%- url_for(post.path) %>" class="title"><%= post.title %></div>
+    <section class="desc"><%- partial('excerpt', { post: post }) %></section>
+    <p class="sub"><%- date(post.date, 'MMM D, YYYY') %></p>
+  </div>
+</a>
