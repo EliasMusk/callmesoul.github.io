@@ -1,5 +1,6 @@
 ---
 title: 使用HTTPCODE替换自定义CODE
+abbrlink: 51837
 date: 2019-10-21 08:47:58
 tags:
 ---

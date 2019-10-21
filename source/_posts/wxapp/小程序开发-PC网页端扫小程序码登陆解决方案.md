@@ -1,10 +1,13 @@
 ---
 title: 小程序开发-PC网页端扫小程序码登陆解决方案
+categories:
+  - wxapp
+photos:
+  - >-
+    https://callmesoul-blog.oss-cn-shenzhen.aliyuncs.com/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B.jpg
+abbrlink: 22147
 date: 2019-09-10 09:13:14
 tags:
-categories: 
-- wxapp
-photos: [https://callmesoul-blog.oss-cn-shenzhen.aliyuncs.com/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B.jpg]
 ---
 最近做了一个小程序`我爱阅读`,是一款针对小学生阅读习惯培养的一个小程序工具，有兴趣的可以了解下。
 

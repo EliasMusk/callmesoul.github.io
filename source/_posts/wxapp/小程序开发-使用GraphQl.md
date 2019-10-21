@@ -1,10 +1,13 @@
-# ---
+---
 title: 小程序开发之-使用GraphQl
+categories:
+  - wxapp
+photos:
+  - >-
+    https://callmesoul-blog.oss-cn-shenzhen.aliyuncs.com/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B.jpg
+abbrlink: 20484
 date: 2017-10-10 09:14:14
 tags:
-categories: 
-- wxapp
-photos: [https://callmesoul-blog.oss-cn-shenzhen.aliyuncs.com/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%BC%80%E5%8F%91%E6%95%99%E7%A8%8B.jpg]
 ---
 
 之前文章有介绍到graphql的好处，而且很大可能就是未来Restful api的代替者,不过以后的事谁也不好说啊。反正就是好的东西，我们就想折腾下用起来。最近自己写了小程序，想顺便学习graphql，实践。于事有了本篇教程
