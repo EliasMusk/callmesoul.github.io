@@ -1,6 +1,6 @@
 ---
 layout: 使用headless
-title: ssr渲染框架来开发网站
+title: 使用headless cms + ssr渲染框架来开发网站
 date: 2019-11-25 11:15:44
 tags:
 ---
