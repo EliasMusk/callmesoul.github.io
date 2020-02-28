@@ -140,6 +140,58 @@
 <!---->
 <!--  <div class="project-card">
   
+  <div class="ctnWrap">
+    <a href="/posts/3/" class="title">关于Vue-router=&gt;addRoutes 方法的一些坑</a>
+    <section class="desc">
+  关于Vue-router=&gt;addRoutes 方法的一些坑
+router.addRoutes(routes: Array&lt;RouteConfig&gt;)
+
+
+routes 是要符合路由规范的数组
+
+router.addRoutes 只是注册了路由的规则，但是并不会自动更新路由列表项，需要先手动更新路由列表，再去注册规则
+
+// 手动添加路由列表项
+router.options.routes.push(...routers)
+// 注册路由规则
+router.addRoutes(routers)
+
+注册完最好重定向
+如果添加路由之前，要访问的地址是需要 addRoutes 添加的。
+那么在调用addRouters之前路由并不存在，所以注册完需重定向一下要访问的地址
+在路由导航守卫可以这样些
+router.beforeEach((to, from, next) =&gt; {
+  // 其他逻辑
+  router.options.routes.push(...asyncRouterMap)
+  router.addRoutes(asyncRouterMap)
+  next(to.path)
+})
+
+动态引入组件component
+网上很多人的文章的copy的，也没验证过，所有导致搜索的大部分方法都是不行
+
+component: () =&gt; import(componentPath)  不行
+
+component: () =&gt; import(&#39;@/&#39; + componentPath)  不行
+还有很多的网上办法都不行的
+最后找到了解决方法：
+component: require.ensure([], (require) =&gt; {
+        resolve(require(&#39;@/&#39; + componentPath))
+}),
+注意： @/ 要分开写死，不可以连同地址一块传入，可能是为了给webpack标识的
+
+
+
+
+
+
+</section>
+    <p class="sub">2月 28, 2020</p>
+  </div>
+</div>-->
+<!---->
+<!--  <div class="project-card">
+  
     <div class="imgWrap">
       <img src="https://callmesoul-blog.oss-cn-shenzhen.aliyuncs.com/51adopt/banner.png" alt="" />
     </div>
@@ -1677,6 +1729,73 @@ graphql返回的字段，一定会有data，无论成功后失败。只是有错
     <div class="box-content flex1">
         <div class="swiper-container">
             <div class="swiper-wrapper">
+                
+                    <a title="关于Vue-router=&gt;addRoutes 方法的一些坑" alt="关于Vue-router=&gt;addRoutes 方法的一些坑" href="/posts/3/"
+                       class="post-item swiper-slide flex flex-v">
+                        <div class="image">
+                            
+                                <img title="关于Vue-router=&gt;addRoutes 方法的一些坑" alt="关于Vue-router=&gt;addRoutes 方法的一些坑"
+                                     src="/images/default.jpg"></img>
+                            
+                        </div>
+                        <div class="content-warp flex1 flex flex-v">
+                            <div class="title">&lt; 关于Vue-router=&gt;addRoutes 方法的一些坑 &gt;</div>
+                            <div class="content flex1">
+                                
+  关于Vue-router=&gt;addRoutes 方法的一些坑
+router.addRoutes(routes: Array&lt;RouteConfig&gt;)
+
+
+routes 是要符合路由规范的数组
+
+router.addRoutes 只是注册了路由的规则，但是并不会自动更新路由列表项，需要先手动更新路由列表，再去注册规则
+
+// 手动添加路由列表项
+router.options.routes.push(...routers)
+// 注册路由规则
+router.addRoutes(routers)
+
+注册完最好重定向
+如果添加路由之前，要访问的地址是需要 addRoutes 添加的。
+那么在调用addRouters之前路由并不存在，所以注册完需重定向一下要访问的地址
+在路由导航守卫可以这样些
+router.beforeEach((to, from, next) =&gt; {
+  // 其他逻辑
+  router.options.routes.push(...asyncRouterMap)
+  router.addRoutes(asyncRouterMap)
+  next(to.path)
+})
+
+动态引入组件component
+网上很多人的文章的copy的，也没验证过，所有导致搜索的大部分方法都是不行
+
+component: () =&gt; import(componentPath)  不行
+
+component: () =&gt; import(&#39;@/&#39; + componentPath)  不行
+还有很多的网上办法都不行的
+最后找到了解决方法：
+component: require.ensure([], (require) =&gt; {
+        resolve(require(&#39;@/&#39; + componentPath))
+}),
+注意： @/ 要分开写死，不可以连同地址一块传入，可能是为了给webpack标识的
+
+
+
+
+
+
+
+                            </div>
+                            <div class="post-tags">
+                                
+                            </div>
+                            <div class="other">
+                                <!--<a><i class="iconfont icon-iconfontordinaryliulan"></i>52</a>-->
+                                <!--<a><i class="iconfont icon-icon27"></i>52</a>-->
+                                <span><i class="iconfont icon-shijian"></i>2月 28, 2020</span>
+                            </div>
+                        </div>
+                    </a>
                 
                     <a title="自主项目【51领养】" alt="自主项目【51领养】" href="/posts/2/"
                        class="post-item swiper-slide flex flex-v">
